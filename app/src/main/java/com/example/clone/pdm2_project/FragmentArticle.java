@@ -1,10 +1,14 @@
 package com.example.clone.pdm2_project;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,7 @@ import info.androidhive.androidsplashscreentimer.R;
  */
 public class FragmentArticle extends Fragment {
     private Speakers speakers;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     public FragmentArticle() {
         // Required empty public constructor
