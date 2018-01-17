@@ -22,7 +22,6 @@ import info.androidhive.androidsplashscreentimer.R;
  */
 public class FragmentArticle extends Fragment {
     private Speakers speakers;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     public FragmentArticle() {
         // Required empty public constructor

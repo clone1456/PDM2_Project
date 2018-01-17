@@ -1,6 +1,7 @@
 package com.example.clone.pdm2_project;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.ToggleButton;
 
 import info.androidhive.androidsplashscreentimer.R;
 
@@ -24,6 +28,7 @@ public class Menu extends AppCompatActivity {
     Runnable runnable;
     private Handler handler = new Handler();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +39,10 @@ public class Menu extends AppCompatActivity {
         runnable = new Runnable() {
             @Override
             public void run() {
-                if(firstScene == true) {
+                if (firstScene == true) {
                     TransitionManager.go(mAnotherScene, mFadeTransition);
                     firstScene = false;
-                }else{
+                } else {
                     TransitionManager.go(mAScene, mFadeTransition);
                     firstScene = true;
                 }
@@ -63,6 +68,22 @@ public class Menu extends AppCompatActivity {
                             inflateTransition(R.transition.fade_transition);
         }
         firstScene = true;
+
+
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
+        mp.setLooping(true);
+        mp.start();
+
+        Switch toggle = (Switch) findViewById(R.id.switch2);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mp.pause();
+                } else {
+                    mp.start();
+                }
+            }
+        });
     }
 
     public void receitas(View view) {
