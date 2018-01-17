@@ -68,4 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+    // ------------------------ mapa ------------------------------
+
+    public void mapa(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:<lat>,<long>?q=<lat>,<long>(Label+Name)"));
+        startActivity(intent);
+    }
 }

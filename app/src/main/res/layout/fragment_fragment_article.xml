@@ -15,33 +15,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/article_textview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:text="@string/hello_blank_fragment" />
 
-                <TextView
-                    android:id="@+id/article_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hello_blank_fragment" />
+            <Button
+                android:id="@+id/foto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="takeFoto"
+                android:text="Partilhei o seu resultado" />
 
-                <Button
-                    android:id="@+id/foto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="takeFoto"
-                    android:text="Partilhei o seu resultado" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="258dp"
+                android:src="@mipmap/ic_launcher_round" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="258dp"
-                    android:src="@mipmap/ic_launcher_round" />
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/mapa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="mapa"
+                android:text="Localização do produto final" />
         </LinearLayout>
     </ScrollView>
 
