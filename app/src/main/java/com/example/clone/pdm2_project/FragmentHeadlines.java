@@ -13,6 +13,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.clone.pdm2_project.Model.DataResponse;
+import com.example.clone.pdm2_project.Model.Speakers;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.Inflater;
+
 import info.androidhive.androidsplashscreentimer.R;
 
 
@@ -21,6 +31,8 @@ import info.androidhive.androidsplashscreentimer.R;
  */
 public class FragmentHeadlines extends ListFragment {
 
+    private List<Speakers> speakers;
+    static CustomAdapter customAdapter;
 
     public FragmentHeadlines() {
         // Required empty public constructor
@@ -30,29 +42,37 @@ public class FragmentHeadlines extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        speakers = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(DataResponse.fakeResponse);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String name = jsonObject.optString("Name", "");
+                String descricao = jsonObject.optString("descricao", "");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, NewsData.Headlines);
-
-        setListAdapter(adapter);
+                Speakers speaker = new Speakers(name,descricao);
+                speakers.add(speaker);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        customAdapter = new CustomAdapter(getActivity().getBaseContext(), speakers);
+        setListAdapter(customAdapter);
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
-
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
 
         if (getActivity().findViewById(R.id.fragment_container) != null){
-            Toast.makeText(getActivity().getBaseContext(), "Clicked Portrait." + NewsData.Headlines[position],
-                    Toast.LENGTH_SHORT).show();
 
             FragmentArticle newFragment = new FragmentArticle();
             Bundle args = new Bundle();
             args.putInt("position", position);
             newFragment.setArguments(args);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
+
             transaction.replace(R.id.fragment_container, newFragment);
             transaction.addToBackStack(null);
             // Commit the transaction
@@ -60,11 +80,8 @@ public class FragmentHeadlines extends ListFragment {
 
         }
         else{
-            Toast.makeText(getActivity().getBaseContext(), "Clicked Landscape." + NewsData.Headlines[position],
-                    Toast.LENGTH_SHORT).show();
-
             TextView articleTextView = (TextView) getActivity().findViewById(R.id.article_textview);
-            articleTextView.setText(NewsData.Articles[position]);
+            articleTextView.setText(customAdapter.getItem(position).getDescription());
         }
     }
 

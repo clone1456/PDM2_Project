@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.clone.pdm2_project.Model.Speakers;
 
 import info.androidhive.androidsplashscreentimer.R;
 
@@ -14,7 +17,7 @@ import info.androidhive.androidsplashscreentimer.R;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentArticle extends Fragment {
-
+    private Speakers speakers;
 
     public FragmentArticle() {
         // Required empty public constructor
@@ -30,16 +33,14 @@ public class FragmentArticle extends Fragment {
 
     @Override public void onStart() {
         super.onStart();
-        // During startup, check if there are arguments passed to the fragment.
-        // onStart is a good place to do this because the layout has already been
-        // applied to the fragment at this point so we can safely call the method
-        // below that sets the article text.
+
         Bundle args = getArguments();
         if (args != null) {
             // Set article based on argument passed in
             int currentPosition = args.getInt("position");
-            TextView articleTextView = (TextView) getActivity().findViewById(R.id.article_textview);
-            articleTextView.setText(NewsData.Articles[currentPosition]);
+            speakers = FragmentHeadlines.customAdapter.getItem(currentPosition);
+            TextView article = (TextView) getActivity().findViewById(R.id.article_textview);
+            article.setText(speakers.getDescription());
         }
     }
 
