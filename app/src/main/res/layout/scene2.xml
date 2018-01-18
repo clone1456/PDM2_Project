@@ -6,18 +6,20 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_view2"
-        android:layout_width="232dp"
+        android:id="@+id/tittleMenu2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/sugartext"
         android:gravity="center"
         android:text="HELPPY MEAL"
-        android:textColor="#fff"
+        android:textColor="#cc3300"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

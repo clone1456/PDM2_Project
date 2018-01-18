@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,11 +27,8 @@ public class MainActivity extends AppCompatActivity {
         if (findViewById(R.id.fragment_container) != null) {
 
             if (!firstTimePortrait) {
-                Toast.makeText(this, "NOT first time portrait!", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            Toast.makeText(this, "First time portrait!", Toast.LENGTH_SHORT).show();
 
             firstTimePortrait = false;
 

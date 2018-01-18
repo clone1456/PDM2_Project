@@ -1,6 +1,7 @@
 package com.example.clone.pdm2_project;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import info.androidhive.androidsplashscreentimer.R;
@@ -89,5 +91,10 @@ public class Menu extends AppCompatActivity {
     public void receitas(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void sair(View view) {
+        finish();
+        System.exit(0);
     }
 }
